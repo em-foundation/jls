@@ -1,15 +1,16 @@
 {
-  "name": "node_jls",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "node-addon-api": "^8.5.0"
-  }
+    "name": "node_jls",
+    "version": "1.0.0",
+    "main": "build/Release/node_jls.node",
+    "types": "node_jls.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "node-addon-api": "^8.5.0"
+    }
 }
