@@ -35,8 +35,13 @@ pyjls/binding.c
 .*.swp
 .*.swo
 
+# node_jls
+node_jls/node_modules
+
 .force_relink
 .force_rebuild
 
 .idea
+
+.history
 
