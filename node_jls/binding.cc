@@ -3,26 +3,26 @@ extern "C" {
     #include "jls/writer.h"
 }
 
-class JlsWriter : public Napi::ObjectWrap<JlsWriter> {
+class Writer : public Napi::ObjectWrap<Writer> {
 public:
     static Napi::Object Init(Napi::Env env, Napi::Object exports) {
-        Napi::Function func = DefineClass(env, "JlsWriter", {
-            InstanceMethod("close", &JlsWriter::Close),
-            InstanceMethod("signalDef", &JlsWriter::SignalDef),
-            InstanceMethod("sourceDef", &JlsWriter::SourceDef),
-            InstanceMethod("writeF32", &JlsWriter::WriteF32),
+        Napi::Function func = DefineClass(env, "Writer", {
+            InstanceMethod("close", &Writer::Close),
+            InstanceMethod("signalDef", &Writer::SignalDef),
+            InstanceMethod("sourceDef", &Writer::SourceDef),
+            InstanceMethod("writeF32", &Writer::WriteF32),
         });
 
-        exports.Set("JlsWriter", func);
+        exports.Set("Writer", func);
         return exports;
     }
 
-    JlsWriter(const Napi::CallbackInfo& info) : Napi::ObjectWrap<JlsWriter>(info) {
+    Writer(const Napi::CallbackInfo& info) : Napi::ObjectWrap<Writer>(info) {
         std::string path = info[0].As<Napi::String>();
         jls_wr_open(&this->writer_, path.c_str());
     }
 
-    ~JlsWriter() {
+    ~Writer() {
         if (writer_)
             jls_wr_close(writer_);
     }
@@ -114,7 +114,7 @@ private:
 };
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
-    return JlsWriter::Init(env, exports);
+    return Writer::Init(env, exports);
 }
 
 NODE_API_MODULE(node_jls, InitAll)

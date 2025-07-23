@@ -1,9 +1,9 @@
-import JlsWriter, { SourceDef, SignalDef } from 'node_jls'
-import Fs from 'fs'
+import * as Jls from 'node_jls'
+import * as Fs from 'fs'
 
-const jls = new JlsWriter('output4.jls')
+const jlsfile = new Jls.Writer('output4.jls')
 
-const sdef: SourceDef = {
+const sdef: Jls.SourceDef = {
     source_id: 1,
     name: 'mysource',
     vendor: 'emf',
@@ -11,11 +11,11 @@ const sdef: SourceDef = {
     version: '1.0',
     serial_number: '00000001',
 }
-jls.sourceDef(sdef)
+jlsfile.sourceDef(sdef)
 
 const f32 = new Float32Array(Fs.readFileSync('current.f32.bin').buffer)
 
-const sigdef: SignalDef = {
+const sigdef: Jls.SignalDef = {
     signal_id: 1,
     source_id: 1,
     signal_type: 0,
@@ -27,10 +27,10 @@ const sigdef: SignalDef = {
     summary_decimate_factor: 1,
     annotation_decimate_factor: 100,
     utc_decimate_factor: 100,
-    sample_id_offset: 0n,
+    sample_id_offset: BigInt(0),
     name: 'current',
     units: 'A',
 }
-jls.signalDef(sigdef)
-jls.writeF32(1, f32)
-jls.close()
+jlsfile.signalDef(sigdef)
+jlsfile.writeF32(1, f32)
+jlsfile.close()

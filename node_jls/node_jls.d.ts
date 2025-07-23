@@ -1,5 +1,5 @@
-declare module 'node_jls' {
-    export interface SourceDef {
+declare namespace Jls {
+    type SourceDef = {
         source_id: number
         name: string
         vendor: string
@@ -7,8 +7,7 @@ declare module 'node_jls' {
         version: string
         serial_number: string
     }
-
-    export interface SignalDef {
+    type SignalDef = {
         signal_id: number
         source_id: number
         signal_type: number
@@ -24,14 +23,13 @@ declare module 'node_jls' {
         name: string
         units: string
     }
-
-    export class JlsWriter {
+    class Writer {
         constructor(path: string)
         sourceDef(def: SourceDef): number
         signalDef(def: SignalDef): number
         writeF32(signal_id: number, data: Float32Array): number
         close(): number
     }
-
-    export { }
 }
+
+export = Jls
