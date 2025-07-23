@@ -1,16 +1,19 @@
 {
     "name": "node_jls",
     "version": "1.0.0",
-    "main": "build/Release/node_jls.node",
+    "description": "Node.js bindings for JLS writer",
+    "main": "index.js",
     "types": "node_jls.d.ts",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "description": "",
-    "dependencies": {
-        "node-addon-api": "^8.5.0"
+    "license": "MIT",
+    "gypfile": true,
+    "files": [
+        "index.js",
+        "node_jls.d.ts",
+        "prebuilds/"
+    ],
+    "devDependencies": {
+        "node-addon-api": "^8.5.0",
+        "node-gyp": "^11.2.0",
+        "prebuildify": "^6.0.1"
     }
 }
