@@ -4,7 +4,6 @@
             "target_name": "node_jls",
             "sources": [
                 "binding.cc",
-                "../src/backend_win.c",
                 "../src/buffer.c",
                 "../src/core.c",
                 "../src/crc32c_sw.c",
@@ -32,6 +31,15 @@
             ],
             "cflags_cc": [
                 "-std=c++17"
+            ],
+            "conditions": [
+                ["OS=='win'", {
+                    "sources": ["../src/backend_win.c"]
+                }],
+                ["OS!='win'", {
+                    "sources": ["../src/backend_posix.c"],
+                    "cflags_cc": ["-fexceptions"]
+                }],
             ]
         }
     ]
